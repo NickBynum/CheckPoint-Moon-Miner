@@ -30,37 +30,48 @@
 
   </header>
 
-  <section id="secion-intro" class="hidden">
+  <section id="section-intro" class="spaceholder">
     <div class="row m-5 p-5 justify-content-center">
       <div class="col-4">
-        <button class="btn btn-light btn-block">Play Now!</button>
+        <button onclick="revealGame()" class="btn btn-light btn-lg btn-block"><strong>Play Now!</strong></button>
       </div>
     </div>
-      <div class="row">
-        <div class="col-12 text-light text-center">
-          <h3>Mmmmmmmmmm CHEESE</h3>
-        </div>
+    <div class="row">
+      <div class="col-12 text-light text-center">
+        <h3>Mmmmmmmmmm CHEESE</h3>
       </div>
+    </div>
   </section>
 
-<main class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-3 align-self-center">
-      <h2 class="text-warning">Store</h2>
+  <main id="section-game" class="container-fluid hidden">
+    <div class="row justify-content-center">
+      <div class="col-3 align-self-center">
+        <h2 class="text-warning">Store</h2>
+      </div>
+      <div class="col-4">
+        <img id="moonButton" src="/moon.jpg" alt="" class="img-fluid rounded-circle" onclick="mineMoon()">
+      </div>
     </div>
-    <div class="col-4">
-<img id="moonButton" src="/moon.jpg" alt="" class="img-fluid rounded-circle" onclick="mineMoon()">
+    <div class="row justify-content-around text-warning">
+      <div class="col-4">
+        <h2>Stats</h2>
+        <ul>
+          <li id="cheese-count"></li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <h2>Inventory</h2>
+      </div>
     </div>
-  </div>
-  <div class="row justify-content-around text-warning">
-    <div class="col-4">
-<h2>Stats</h2>
+  </main>
+
+  <footer>
+    <div class="row fixed-bottom">
+      <div class="col-12 text-light text-center p-5">
+      <p>Created with care by - Nick Bynum<br>all rights reserved</p>
+      </div class="col-12 text-light text-center">
     </div>
-    <div class="col-4">
-<h2>Inventory</h2>
-    </div>
-  </div>
-</main>
+  </footer>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
