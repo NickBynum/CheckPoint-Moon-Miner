@@ -1,0 +1,18 @@
+body {
+  background-image: url(/bg-main.jpg);
+  background-size: cover;
+}
+
+.logo{
+  width: 10vh;
+  height: 10vh;
+}
+
+.bg-black{
+  background-color: black;
+}
+
+.hidden{
+  display: none;
+}
+
