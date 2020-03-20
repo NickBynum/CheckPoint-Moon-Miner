@@ -1,7 +1,6 @@
 let cheese = 0
 let clickUpgrades = {
   pickaxes: {
-    type: "wooden",
     price: 100,
     quantity: 0,
     multiplier: 1
@@ -10,29 +9,48 @@ let clickUpgrades = {
 
 let automaticUpgrades = {
   droidMiners: {
-    price: 600,
+    price: 60,
     quantity: 0,
     multiplier: 20
   }
 };
 
 function revealGame() {
-document.getElementById("section-intro").classList.add("hidden");
-document.getElementById("section-game").classList.remove("hidden")
+  document.getElementById("section-intro").classList.add("hidden");
+  document.getElementById("section-game").classList.remove("hidden")
 }
 
 function mineMoon() {
   cheese += 1 + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity)
+  cheese += 1 + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity)
   updateCheese()
 }
 
-function buyPickaxe(){
-  if(cheese >= 20) {
-    cheese -= 20
+function buyPickaxe() {
+  if (cheese >= 20 + (clickUpgrades.pickaxes.quantity * 10)) {
+    cheese -= 20 + (clickUpgrades.pickaxes.quantity * 10)
     clickUpgrades.pickaxes.quantity++
-    console.log("Pickaxe purchase successful")
   }
-updateCheese()
+  else {
+    console.log("You don't have enough for this purchase");
+
+  }
+  updateCheese()
+  updateInventory()
+}
+
+function buyDroidMiner() {
+  if (cheese >= automaticUpgrades.droidMiners.price + (automaticUpgrades.droidMiners.quantity * 10)) {
+    cheese -= automaticUpgrades.droidMiners.price + (automaticUpgrades.droidMiners.quantity * 10)
+    automaticUpgrades.droidMiners.quantity++
+  }
+  else {
+    console.log("You don't have enough for this purchase");
+
+  }
+  updateCheese()
+  updateInventory()
+  collectAutoUpgrades()
 }
 
 function updateCheese() {
@@ -40,7 +58,20 @@ function updateCheese() {
   cheeseCountElem.innerText = "Cheese Mined: " + cheese.toString()
 }
 
-function collectAutoUpgrades(){
-  let interval = setInterval(mineMoon, 1000)
+function collectAutoUpgrades() {
+  let interval = setInterval(mineMoon, 3000)
   setTimeout(function () { clearInterval(interval) }, 10000)
+}
+
+function droidMine(){
+  cheese += 1 + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity)
+  updateCheese()
+}
+
+function updateInventory() {
+  let pickaxeCountElem = document.getElementById("pickaxe-count")
+  pickaxeCountElem.innerText = "Pickaxes Accumulated: " + clickUpgrades.pickaxes.quantity.toString()
+
+  let droidCountElem = document.getElementById("droid-count")
+  droidCountElem.innerText = "Droid Miners Accumulated: " + automaticUpgrades.droidMiners.quantity.toString()
 }

@@ -47,6 +47,12 @@
     <div class="row justify-content-center">
       <div class="col-3 align-self-center">
         <h2 class="text-warning">Store</h2>
+        <ul>
+        <li class="m-1"><button onclick="buyPickaxe()" class="btn btn-warning">Purchase Pickaxe</button></li>
+        <li class="m-1"><button class="btn btn-warning">Purchase Jackhammer</button></li>
+        <li class="m-1"><button onclick="buyDroidMiner()" class="btn btn-warning">Purchase Droid Miner</button></li>
+        <li class="m-1"><button class="btn btn-warning">Purchase Something</button></li>
+        </ul>
       </div>
       <div class="col-4">
         <img id="moonButton" src="/moon.jpg" alt="" class="img-fluid rounded-circle" onclick="mineMoon()">
@@ -61,6 +67,10 @@
       </div>
       <div class="col-4">
         <h2>Inventory</h2>
+        <ul>
+          <li id="pickaxe-count"></li>
+          <li id="droid-count"></li>
+        </ul>
       </div>
     </div>
   </main>
