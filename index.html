@@ -30,7 +30,7 @@
 
   </header>
 
-  <section id="section-intro" class="spaceholder">
+  <section id="section-intro" class="container">
     <div class="row m-5 p-5 justify-content-center">
       <div class="col-4">
         <button onclick="revealGame()" class="btn btn-light btn-lg btn-block"><strong>Play Now!</strong></button>
@@ -48,18 +48,21 @@
       <div class="col-3 align-self-center">
         <h2 class="text-warning">Store</h2>
         <ul>
-        <li class="m-1"><button onclick="buyPickaxe()" class="btn btn-warning">Purchase Pickaxe</button></li>
-        <li class="m-1"><button id="buyJackHammerbtn" onclick="buyJackHammer()" class="btn btn-warning">Purchase Jackhammer</button></li>
-        <li class="m-1"><button id="buyDroidMinerbtn" onclick="buyDroidMiner()" class="btn btn-warning">Purchase Droid Miner</button></li>
-        <li class="m-1"><button class="btn btn-warning">Purchase Escavator</button></li>
+          <li class="m-1"><button onclick="buyPickaxe()" class="btn btn-warning">Purchase Pickaxe</button></li>
+          <li class="m-1"><button id="buyJackHammerbtn" onclick="buyJackHammer()" class="btn btn-warning">Purchase
+              Jackhammer</button></li>
+          <li class="m-1"><button id="buyDroidMinerbtn" onclick="buyDroidMiner()" class="btn btn-warning">Purchase Droid
+              Miner</button></li>
+          <li class="m-1"><button id="escavatorbtn" onclick="buyEscavator()" class="btn btn-warning">Purchase
+              Escavator</button></li>
         </ul>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <img id="moonButton" src="moon1.png" alt="" class="img-fluid rounded-circle" onclick="mineMoon()">
       </div>
     </div>
     <div class="row justify-content-around text-warning">
-      <div class="col-4">
+      <div class="col-3">
         <h2>Stats</h2>
         <ul>
           <li id="cheese-count"></li>
@@ -70,7 +73,7 @@
           <li id="total-mult"></li>
         </ul>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <h2>Inventory</h2>
         <ul>
           <li id="pickaxe-count"></li>
@@ -82,10 +85,10 @@
     </div>
   </main>
 
-  <footer>
+  <footer class="container">
     <div class="row bottom">
       <div class="col-12 text-light text-center p-5">
-      <p>Created with care by - Nick Bynum<br>all rights reserved</p>
+        <p>Created with care by - Nick Bynum<br>all rights reserved</p>
       </div class="col-12 text-light text-center">
     </div>
   </footer>
