@@ -61,28 +61,40 @@
         <img id="moonButton" src="moon1.png" alt="" class="img-fluid rounded-circle" onclick="mineMoon()">
       </div>
     </div>
-    <div class="row justify-content-around text-warning">
-      <div class="col-3">
-        <h2>Stats</h2>
-        <ul>
-          <li id="cheese-count"></li>
-          <li id="pickaxe-mult"></li>
-          <li id="jackhammer-mult"></li>
-          <li id="droid-mult"></li>
-          <li id="escavator-mult"></li>
-          <li id="total-mult"></li>
-        </ul>
-      </div>
-      <div class="col-3">
-        <h2>Inventory</h2>
-        <ul>
-          <li id="pickaxe-count"></li>
-          <li id="jackhammer-count"></li>
-          <li id="droid-count"></li>
-          <li id="escavator-count"></li>
-        </ul>
+
+    <div class="row">
+      <div class="col-3 offset-4">
+        <button id="droid" onclick="droidMine('droid')" class="btn btn-warning btn-lg btn-block m-1">Deploy Droid Miners</button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-3 offset-4">
+        <button id="escavator" onclick="escavatorMine('escavator')" class="btn btn-warning btn-lg btn-block m-1">Commence Escavation Operation</button>
+      </div>
+    </div>
+
+      <div class="row justify-content-around text-warning">
+        <div class="col-">
+          <h2>Stats</h2>
+          <ul>
+            <li id="cheese-count"></li>
+            <li id="pickaxe-mult"></li>
+            <li id="jackhammer-mult"></li>
+            <li id="droid-mult"></li>
+            <li id="escavator-mult"></li>
+            <li id="total-mult"></li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <h2>Inventory</h2>
+          <ul>
+            <li id="pickaxe-count"></li>
+            <li id="jackhammer-count"></li>
+            <li id="droid-count"></li>
+            <li id="escavator-count"></li>
+          </ul>
+        </div>
+      </div>
   </main>
 
   <footer class="container">

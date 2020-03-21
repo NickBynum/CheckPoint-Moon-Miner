@@ -18,12 +18,15 @@ let automaticUpgrades = {
     price: 60,
     quantity: 0,
     multiplier: 20,
-    inUse: false
+    inUse: false,
+    timeout: 10000
   },
   escavatorPit: {
-    price: 100000,
+    price: 10000,
     quantity: 0,
-    multiplier: 1000
+    multiplier: 1000,
+    inUse: false,
+    timeOut: 30000
   }
 };
 
@@ -47,7 +50,7 @@ function buyPickaxe() {
   }
   else {
     alert("You don't have enough for this purchase");
-    
+
   }
   updateCheese()
   updateInventory()
@@ -65,7 +68,7 @@ function buyJackHammer() {
   updateCheese()
   updateInventory()
 }
-
+//FIXME   buyDroidMiner() and buyEscavator() need consolidated into single function
 // This function completes the purchase of one droid and disables the ability to buy another
 function buyDroidMiner() {
   if (automaticUpgrades.droidMiners.inUse) {
@@ -81,12 +84,12 @@ function buyDroidMiner() {
   }
   updateCheese()
   updateInventory()
-  collectAutoUpgrades()
 }
 
-function droidMine(){
+function droidMine() {
   let result = cheese += 1 + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity)
   console.log("droidMine" + result)
+  collectAutoUpgrades()
   updateCheese()
 }
 
@@ -104,34 +107,46 @@ function buyEscavator() {
   }
   updateCheese()
   updateInventory()
-  collectAutoUpgrades()
 }
 
-function escavatorMine(){
+function escavatorMine() {
   let result = cheese += 1 + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)
-  console.log("escavatorMine" + result)
   updateCheese()
+
 }
+
 function updateCheese() {
   let cheeseCountElem = document.getElementById("cheese-count")
   cheeseCountElem.innerText = "Cheese Mined: " + cheese.toString()
 }
-
-function collectAutoUpgrades() {
+ // FIXME  escavatorMine() and droidMine() need consolidated into collectAutoUpgrades()
+function collectAutoUpgrades(playerChoice) {
+  let tool = automaticUpgrades[playerChoice]
   applyCoolDown()
   setTimeout(removeCoolDown, 10000)
-  let interval = setInterval(droidMine, 1000)
+  let interval = setInterval(tool, 1000)
   setTimeout(function () { clearInterval(interval) }, 10000)
 }
 
+// FIXME  Need to pull the correct autoupgrade that was selected to disable and renable the buttons
+function removeCoolDown() {
+  document.getElementById("tool").classList.remove("disabled")
+  document.getElementById("tool").disabled = false;
+}
+
+function applyCoolDown(playerChoice) {
+  let tool = automaticUpgrades[playerChoice]
+  document.getElementById("tool").classList.add("disabled")
+  document.getElementById("tool").disabled = true;
+}
 
 function updateInventory() {
   let pickaxeCountElem = document.getElementById("pickaxe-count")
   pickaxeCountElem.innerText = "Pickaxes Accumulated: " + clickUpgrades.pickaxes.quantity.toString()
-  
+
   let jackHammerCountElem = document.getElementById("jackhammer-count")
   jackHammerCountElem.innerText = "Jackhammers Accumulated: " + clickUpgrades.jackHammers.quantity.toString()
-  
+
   let droidCountElem = document.getElementById("droid-count")
   droidCountElem.innerText = "Droid Miners Accumulated: " + automaticUpgrades.droidMiners.quantity.toString()
 
@@ -140,30 +155,20 @@ function updateInventory() {
   updateStats()
 }
 
-function removeCoolDown(){
-  document.getElementById("buyDroidMinerbtn").classList.remove("disabled")
-  document.getElementById("buyDroidMinerbtn").disabled = false;
-}
-
-function applyCoolDown(){
-  document.getElementById("buyDroidMinerbtn").classList.add("disabled")
-  document.getElementById("buyDroidMinerbtn").disabled = true;
-}
-
 // STATS Functionality
 function updateStats() {
-let pickAxeMultElem = document.getElementById("pickaxe-mult")
-pickAxeMultElem.innerText = "Current Pickaxe Multiplier: " + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity).toString()
+  let pickAxeMultElem = document.getElementById("pickaxe-mult")
+  pickAxeMultElem.innerText = "Current Pickaxe Multiplier: " + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity).toString()
 
-let jackhammerMultElem = document.getElementById("jackhammer-mult")
-jackhammerMultElem.innerText = "Current Jackhammer Multiplier: " + (clickUpgrades.jackHammers.multiplier * clickUpgrades.jackHammers.quantity).toString()
+  let jackhammerMultElem = document.getElementById("jackhammer-mult")
+  jackhammerMultElem.innerText = "Current Jackhammer Multiplier: " + (clickUpgrades.jackHammers.multiplier * clickUpgrades.jackHammers.quantity).toString()
 
-let droidMultElem = document.getElementById("droid-mult")
-droidMultElem.innerText = "Current Droid Miners Multiplier: " + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity).toString()
+  let droidMultElem = document.getElementById("droid-mult")
+  droidMultElem.innerText = "Current Droid Miners Multiplier: " + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity).toString()
 
-let escavatorMultElem = document.getElementById("escavator-mult")
-escavatorMultElem.innerText = "Current Escavator Multiplier: " + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity).toString()
+  let escavatorMultElem = document.getElementById("escavator-mult")
+  escavatorMultElem.innerText = "Current Escavator Multiplier: " + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity).toString()
 
-let totalMultElem = document.getElementById("total-mult")
-totalMultElem.innerText = "Total Multipliars being applied: " + (1 + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity) + (clickUpgrades.jackHammers.multiplier * clickUpgrades.jackHammers.quantity) + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity) + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)).toString()
+  let totalMultElem = document.getElementById("total-mult")
+  totalMultElem.innerText = "Total Multipliars being applied: " + (1 + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity) + (clickUpgrades.jackHammers.multiplier * clickUpgrades.jackHammers.quantity) + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity) + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)).toString()
 }
