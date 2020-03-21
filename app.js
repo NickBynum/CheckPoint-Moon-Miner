@@ -22,7 +22,6 @@ function revealGame() {
 
 function mineMoon() {
   cheese += 1 + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity)
-  cheese += 1 + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity)
   updateCheese()
 }
 
@@ -59,12 +58,15 @@ function updateCheese() {
 }
 
 function collectAutoUpgrades() {
-  let interval = setInterval(mineMoon, 3000)
+  let interval = setInterval(droidMine, 3000)
   setTimeout(function () { clearInterval(interval) }, 10000)
+  console.log("collectAutoUpgrades" + automaticUpgrades.droidMiners.multiplier);
+  
 }
 
 function droidMine(){
-  cheese += 1 + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity)
+  let result = cheese += 1 + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity)
+  console.log("droidMine" + result)
   updateCheese()
 }
 
