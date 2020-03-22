@@ -48,12 +48,12 @@
       <div class="col-3 align-self-center">
         <h2 class="text-warning">Store</h2>
         <ul>
-          <li class="m-1"><button onclick="buyClickUpgrades('pickaxes')" class="btn btn-warning">Purchase Pickaxe</button></li>
-          <li class="m-1"><button id="buyJackHammerbtn" onclick="buyClickUpgrades('jackHammers')" class="btn btn-warning">Purchase
+          <li class="m-1"><button id="buyPickaxebtn" onclick="buyClickUpgrades('pickaxes')" class="btn btn-warning" disabled = true>Purchase Pickaxe</button></li>
+          <li class="m-1"><button id="buyJackHammerbtn" onclick="buyClickUpgrades('jackHammers')" class="btn btn-warning" disabled = true>Purchase
               Jackhammer</button></li>
-          <li class="m-1"><button id="buyDroidMinerbtn" onclick="buyAutoUpgrades('droidMiners')" class="btn btn-warning">Purchase Droid
+          <li class="m-1"><button id="buyDroidMinerbtn" onclick="buyAutoUpgrades('droidMiners')" class="btn btn-warning" disabled = true>Purchase Droid
               Miner</button></li>
-          <li class="m-1"><button id="escavatorbtn" onclick="buyAutoUpgrades('escavatorPit')" class="btn btn-warning">Purchase
+          <li class="m-1"><button id="buyEscavatorbtn" onclick="buyAutoUpgrades('escavatorPit')" class="btn btn-warning" disabled = true>Purchase
               Escavator</button></li>
         </ul>
       </div>
@@ -64,12 +64,12 @@
 
     <div class="row">
       <div class="col-3 offset-4">
-        <button id="droid" onclick="collectAutoUpgrades('droidMiners')" class="btn btn-warning btn-lg btn-block m-1">Deploy Droid Miners</button>
+        <button id="droid" onclick="collectAutoUpgrades('droidMiners')" class="btn btn-warning btn-lg btn-block m-1" disabled = true>Deploy Droid Miners</button>
       </div>
     </div>
     <div class="row">
       <div class="col-3 offset-4">
-        <button id="escavator" onclick="collectAutoUpgrades('escavatorPit')" class="btn btn-warning btn-lg btn-block m-1">Commence Escavation Operation</button>
+        <button id="escavator" onclick="collectAutoUpgrades('escavatorPit')" class="btn btn-warning btn-lg btn-block m-1" disabled = true>Commence Escavation Operation</button>
       </div>
     </div>
 

@@ -1,13 +1,13 @@
 let cheese = 0
 let clickUpgrades = {
   pickaxes: {
-    price: 100,
+    price: 20,
     quantity: 0,
     multiplier: 1
   },
 
   jackHammers: {
-    price: 10000,
+    price: 1000,
     quantity: 0,
     multiplier: 10
   }
@@ -19,14 +19,16 @@ let automaticUpgrades = {
     quantity: 0,
     multiplier: 20,
     inUse: false,
-    timeout: 10000
+    timeout: 10000,
+    unlockID: "droid"
   },
   escavatorPit: {
     price: 10000,
     quantity: 0,
-    multiplier: 1000,
+    multiplier: 1100,
     inUse: false,
-    timeOut: 30000
+    timeOut: 30000,
+    unlockID: "escavator"
   }
 };
 
@@ -87,10 +89,11 @@ function buyClickUpgrades(clickChoice) {
 
 function buyAutoUpgrades(clickChoice) {
   let autoUpgradePurch = automaticUpgrades[clickChoice]
+  let unlockID = autoUpgradePurch.unlockID
+  document.getElementById(unlockID).disabled = false
   if (cheese >= autoUpgradePurch.price + (autoUpgradePurch.quantity * 10)) {
     cheese -= autoUpgradePurch.price + (autoUpgradePurch.quantity * 10)
     autoUpgradePurch.quantity++
-    console.log("Item purchased")
   }
   else {
     alert("You don't have enough for this purchase");
@@ -133,10 +136,14 @@ function buyAutoUpgrades(clickChoice) {
 // //SECTION ****refactored *****
 function autoMine(playerChoice) {
   let autoUpgrade = automaticUpgrades[playerChoice]
+  if(autoUpgrade.quantity !== 0){
+    console.log(autoUpgrade.quantity)
   let result = cheese += 1 + (autoUpgrade.multiplier * autoUpgrade.quantity)
-  updateCheese()
+  updateCheese()}
+  else
+  {
+  return}
 }
-
 
 // function escavatorMine() {
 //   let result = cheese += 1 + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)
@@ -152,18 +159,19 @@ function collectAutoUpgrades(playerChoice) {
   // }
   // applyCoolDown()
   // setTimeout(removeCoolDown, 10000)
-  let interval = setInterval( autoMine(playerChoice), 1000)
-  setTimeout(function () { autoUpgrade.inUse = false; clearInterval(interval) }, 10000)
-  autoUpgrade.inUse = true
+  let interval = setInterval(function (){autoMine(playerChoice)}, 1000);
+  setTimeout(function () { clearInterval(interval) }, 10000)
+  // autoUpgrade.inUse = true
 }
 
 function updateCheese() {
   let cheeseCountElem = document.getElementById("cheese-count")
   cheeseCountElem.innerText = "Cheese Mined: " + cheese.toString()
+  unlockPurchases()
 }
 
 
-// FIXME  Need to pull the correct autoupgrade that was selected to disable and renable the buttons
+// FIXME  Need to pull the correct autoupgrade that was selected to disable and re-enable the buttons
 function removeCoolDown() {
   document.getElementById("tool").classList.remove("disabled")
   // @ts-ignore
@@ -209,3 +217,49 @@ function updateStats() {
   let totalMultElem = document.getElementById("total-mult")
   totalMultElem.innerText = "Total Multipliars being applied: " + (1 + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity) + (clickUpgrades.jackHammers.multiplier * clickUpgrades.jackHammers.quantity) + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity) + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)).toString()
 }
+
+function unlockPurchases(){
+  // Pickaxe
+  let pricePickaxeElem = clickUpgrades.pickaxes.price
+  let quantPickaxeElem = clickUpgrades.pickaxes.quantity
+  if(cheese >= pricePickaxeElem) {
+    document.getElementById("buyPickaxebtn").disabled = false
+  }
+  else{
+    document.getElementById("buyPickaxebtn").disabled = true
+  }
+// Jackhammer
+  let priceJackhammerElem = clickUpgrades.jackHammers.price
+  let quantJackhammerElem = clickUpgrades.jackHammers.quantity
+  if(cheese >= priceJackhammerElem) {
+    document.getElementById("buyJackHammerbtn").disabled = false
+  }
+  else{
+    document.getElementById("buyJackHammerbtn").disabled = true
+  }
+// Droid Miner
+  let priceDroidElem = automaticUpgrades.droidMiners.price
+  let quantDroidElem = automaticUpgrades.droidMiners.price
+  if(cheese >= priceDroidElem) {
+    document.getElementById("buyDroidMinerbtn").disabled = false
+  }
+  else{
+    document.getElementById("buyDroidMinerbtn").disabled = true
+  }
+// Escavator Pit
+  let priceEscavatorElem = automaticUpgrades.escavatorPit.price
+  let quantEscavatorElem = automaticUpgrades.escavatorPit.quantity
+  if(cheese >= priceEscavatorElem) {
+    document.getElementById("buyEscavatorbtn").disabled = false
+  }
+  else{
+    document.getElementById("buyEscavatorbtn").disabled = true
+  }
+}
+
+// if(quantEscavatorElem >= 1){
+//   
+// }
+// if(quantDroidElem >= 1){
+//   document.getElementById("droidMiners").disabled = false
+// }
