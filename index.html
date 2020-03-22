@@ -20,7 +20,7 @@
         <div class="col-3 col-md-1">
           <img src="moon1.png" alt="logo" class="logo">
         </div>
-        <div class="col-7 align-self-start">
+        <div class="col-9 align-self-start">
           <h1 class="text-light">Moon Miner 5000 Gazillion!</h1>
         </div>
       </div>
@@ -32,7 +32,7 @@
 
   <section id="section-intro" class="container">
     <div class="row m-5 p-5 justify-content-center">
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <button onclick="revealGame()" class="btn btn-light btn-lg btn-block"><strong>Play Now!</strong></button>
       </div>
     </div>
@@ -45,8 +45,8 @@
 
   <main id="section-game" class="container-fluid hidden">
     <div class="row justify-content-center">
-      <div class="col-3 align-self-center">
-        <h2 class="text-warning">Store</h2>
+      <div class="col-12 col-md-3 align-self-center">
+        <h2 class="text-warning text-center">Store</h2>
         <ul>
           <li class="m-1"><button id="buyPickaxebtn" onclick="buyClickUpgrades('pickaxes')" class="btn btn-warning" disabled = true>Purchase Pickaxe</button></li>
           <li class="m-1"><button id="buyJackHammerbtn" onclick="buyClickUpgrades('jackHammers')" class="btn btn-warning" disabled = true>Purchase
@@ -57,18 +57,18 @@
               Escavator</button></li>
         </ul>
       </div>
-      <div class="col-3">
-        <img id="moonButton" src="moon1.png" alt="" class="img-fluid rounded-circle" onclick="mineMoon()">
+      <div class="col-6 col-md-3">
+        <img id="moonButton" src="moon1.png" alt="" class="img-fluid rounded-circle btn" onclick="mineMoon()">
       </div>
     </div>
 
     <div class="row">
-      <div class="col-3 offset-4">
+      <div class="col-md-3 offset-md-4 col-12">
         <button id="droid" onclick="collectAutoUpgrades('droidMiners')" class="btn btn-warning btn-lg btn-block m-1" disabled = true>Deploy Droid Miners</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-3 offset-4">
+      <div class="col-md-3 offset-md-4 col-12">
         <button id="escavator" onclick="collectAutoUpgrades('escavatorPit')" class="btn btn-warning btn-lg btn-block m-1" disabled = true>Commence Escavation Operation</button>
       </div>
     </div>
