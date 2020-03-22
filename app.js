@@ -134,34 +134,31 @@ function buyAutoUpgrades(clickChoice) {
 // }
 //#endregion
 // //SECTION ****refactored *****
+
 function autoMine(playerChoice) {
   let autoUpgrade = automaticUpgrades[playerChoice]
   if(autoUpgrade.quantity !== 0){
-    console.log(autoUpgrade.quantity)
   let result = cheese += 1 + (autoUpgrade.multiplier * autoUpgrade.quantity)
   updateCheese()}
   else
   {
   return}
 }
-
+//SECTION ***refactored***
 // function escavatorMine() {
 //   let result = cheese += 1 + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)
 //   updateCheese()
 // }
-////#endregion
+//#endregion
 
-// FIXME  escavatorMine() and droidMine() need consolidated into collectAutoUpgrades()
 function collectAutoUpgrades(playerChoice) {
   let autoUpgrade = automaticUpgrades[playerChoice]
-  // if (autoUpgrade.inUse == true) {
-  //   return
-  // }
-  // applyCoolDown()
-  // setTimeout(removeCoolDown, 10000)
+  if (autoUpgrade.inUse == true) {
+    return
+  }
   let interval = setInterval(function (){autoMine(playerChoice)}, 1000);
-  setTimeout(function () { clearInterval(interval) }, 10000)
-  // autoUpgrade.inUse = true
+  setTimeout(function () { autoUpgrade.inUse = false; clearInterval(interval) }, 10000)
+  autoUpgrade.inUse = true
 }
 
 function updateCheese() {
@@ -172,19 +169,20 @@ function updateCheese() {
 
 
 // FIXME  Need to pull the correct autoupgrade that was selected to disable and re-enable the buttons
-function removeCoolDown() {
-  document.getElementById("tool").classList.remove("disabled")
-  // @ts-ignore
-  document.getElementById("tool").disabled = false;
-}
+// function removeCoolDown() {
+//   document.getElementById("tool").classList.remove("disabled")
+//   // @ts-ignore
+//   document.getElementById("tool").disabled = false;
+// }
 
-function applyCoolDown(playerChoice) {
-  let tool = automaticUpgrades[playerChoice]
-  document.getElementById("tool").classList.add("disabled")
-  // @ts-ignore
-  document.getElementById("tool").disabled = true;
-}
+// function applyCoolDown(playerChoice) {
+//   let tool = automaticUpgrades[playerChoice]
+//   document.getElementById("tool").classList.add("disabled")
+//   // @ts-ignore
+//   document.getElementById("tool").disabled = true;
+// }
 
+// TODO Needs refactored
 function updateInventory() {
   let pickaxeCountElem = document.getElementById("pickaxe-count")
   pickaxeCountElem.innerText = "Pickaxes Accumulated: " + clickUpgrades.pickaxes.quantity.toString()
@@ -200,7 +198,7 @@ function updateInventory() {
   updateStats()
 }
 
-// STATS Functionality
+// TODO Needs Refactored --- STATS Functionality
 function updateStats() {
   let pickAxeMultElem = document.getElementById("pickaxe-mult")
   pickAxeMultElem.innerText = "Current Pickaxe Multiplier: " + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity).toString()
@@ -218,6 +216,7 @@ function updateStats() {
   totalMultElem.innerText = "Total Multipliars being applied: " + (1 + (clickUpgrades.pickaxes.multiplier * clickUpgrades.pickaxes.quantity) + (clickUpgrades.jackHammers.multiplier * clickUpgrades.jackHammers.quantity) + (automaticUpgrades.droidMiners.multiplier * automaticUpgrades.droidMiners.quantity) + (automaticUpgrades.escavatorPit.multiplier * automaticUpgrades.escavatorPit.quantity)).toString()
 }
 
+//TODO  Needs refactored
 function unlockPurchases(){
   // Pickaxe
   let pricePickaxeElem = clickUpgrades.pickaxes.price
