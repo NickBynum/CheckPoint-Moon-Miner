@@ -1,1 +1,1 @@
-A simple click game to practive manipulating the DOM with Vanilla JavaScript
+A simple click game to practice manipulating the DOM with Vanilla JavaScript
